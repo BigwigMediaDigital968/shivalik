@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 import QuickEnquiry from "./components/QuickEnquiry";
 import WhyChooseUs from "./components/home/WhyChooseUs";
 import FactsSection from "./components/home/Fact";
+import TestimonialSection from "./components/home/Testimonial";
 
 const projects = [
   {
@@ -81,26 +82,26 @@ export default function Home() {
               return (
                 <div
                   key={project.id}
-                  className={`group relative overflow-hidden rounded-md ${
-                    isTall ? "lg:row-span-2" : ""
-                  }`}
+                  className={`group relative overflow-hidden rounded-md
+          ${isTall ? "lg:row-span-2" : ""}
+        `}
                 >
                   {/* IMAGE */}
                   <Image
                     src={project.image}
                     alt={project.title}
                     width={600}
-                    height={isTall ? 600 : 280}
-                    className={`w-full object-cover transition-transform duration-700 group-hover:scale-105 ${
-                      isTall ? "h-[580px] lg:h-full" : "h-[280px]"
-                    }`}
+                    height={400}
+                    className={`w-full object-cover transition-transform duration-700 group-hover:scale-105
+            h-[260px] sm:h-[280px] lg:h-full
+          `}
                   />
 
-                  {/* DARK OVERLAY */}
+                  {/* OVERLAY */}
                   <div className="absolute inset-0 bg-[var(--primary-bg)]/40 group-hover:bg-[var(--primary-bg)]/60 transition duration-500" />
 
-                  {/* HUGE NUMBER (SUBTLE, LIKE IMAGE) */}
-                  <span className="absolute bottom-6 right-6 text-[120px] font-heading text-white opacity-20 group-hover:opacity-[0.6] transition duration-500 leading-none select-none">
+                  {/* HUGE NUMBER */}
+                  <span className="absolute bottom-6 right-6 text-[100px] lg:text-[120px] font-heading text-white opacity-20 group-hover:opacity-60 transition duration-500 leading-none select-none">
                     {project.id}
                   </span>
 
@@ -117,6 +118,7 @@ export default function Home() {
       </section>
       <WhyChooseUs />
       <FactsSection />
+      <TestimonialSection />
       <QuickEnquiry />
       <Footer />
     </div>

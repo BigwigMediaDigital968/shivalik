@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Chewy&display=swap");
+
+@import "tailwindcss";
+
+/* =====================
+   CSS VARIABLES
+===================== */
+:root {
+  --primary-bg: #173e62;
+  --primary-color: #bda588;
+
+  /* MAIN FONTS */
+  --font-heading: "Playfair Display", serif;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}

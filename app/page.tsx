@@ -8,16 +8,20 @@ import project2 from "./assets/projects/project_2.jpg";
 import project3 from "./assets/projects/project_3.jpg";
 import project4 from "./assets/projects/project_4.jpg";
 import project5 from "./assets/projects/project_5.jpg";
+import client1 from "./assets/logo.svg";
 import Footer from "./components/Footer";
 import QuickEnquiry from "./components/QuickEnquiry";
 import WhyChooseUs from "./components/home/WhyChooseUs";
 import FactsSection from "./components/home/Fact";
 import TestimonialSection from "./components/home/Testimonial";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
+import { useEffect } from "react";
 
 const projects = [
   {
@@ -53,12 +57,12 @@ const projects = [
 ];
 
 const clients = [
-  { id: 1, logo: project1, name: "Client 1" },
-  { id: 2, logo: project1, name: "Client 2" },
-  { id: 3, logo: project1, name: "Client 3" },
-  { id: 4, logo: project1, name: "Client 4" },
-  { id: 5, logo: project1, name: "Client 5" },
-  { id: 6, logo: project1, name: "Client 6" },
+  { id: 1, logo: client1, name: "Client 1" },
+  { id: 2, logo: client1, name: "Client 2" },
+  { id: 3, logo: client1, name: "Client 3" },
+  { id: 4, logo: client1, name: "Client 4" },
+  { id: 5, logo: client1, name: "Client 5" },
+  { id: 6, logo: client1, name: "Client 6" },
 ];
 
 const blogs = [
@@ -93,6 +97,14 @@ const blogs = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 120,
+    });
+  }, []);
   return (
     <div>
       <Navbar />
@@ -102,7 +114,7 @@ export default function Home() {
         <div className="w-11/12 md:w-5/6 mx-auto">
           {/* HEADER */}
           <div className="flex items-end justify-between mb-8">
-            <div>
+            <div data-aos="fade-up">
               <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
                 Featured Projects
               </p>
@@ -112,6 +124,8 @@ export default function Home() {
             </div>
 
             <a
+              data-aos="zoom-in"
+              data-aos-delay="150"
               href="#"
               className="hidden md:flex items-center gap-2 text-sm tracking-widest text-[var(--primary-color)] hover:underline"
             >
@@ -127,6 +141,8 @@ export default function Home() {
               return (
                 <div
                   key={project.id}
+                  data-aos="fade-up"
+                  data-aos-delay={index * 120}
                   className={`group relative overflow-hidden rounded-md
           ${isTall ? "lg:row-span-2" : ""}
         `}
@@ -164,7 +180,7 @@ export default function Home() {
       <WhyChooseUs />
       <FactsSection />
       <TestimonialSection />
-      {/* <section className="py-16">
+      <section className="py-16">
         <div className="w-11/12 md:w-5/6 mx-auto">
           <div className="text-center mb-8">
             <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
@@ -198,25 +214,28 @@ export default function Home() {
                     alt={client.name}
                     width={140}
                     height={70}
-                    className="object-cover transition"
+                    className="object-cover transition invert"
                   />
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
-      </section> */}
+      </section>
       <QuickEnquiry />
 
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white overflow-hidden">
         <div className="w-11/12 md:w-5/6 mx-auto">
           {/* HEADER */}
-          <div className="flex items-end justify-between mb-14">
+          <div
+            className="flex items-end justify-between mb-14"
+            data-aos="fade-up"
+          >
             <div>
               <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
                 Our Blog
               </p>
-              <h2 className="font-heading text-3xl md:text-4xl leading-snug font-bold text-[var(--primary-bg)]  ">
+              <h2 className="font-heading text-3xl md:text-4xl leading-snug font-bold text-[var(--primary-bg)]">
                 Latest insights & updates
               </h2>
             </div>
@@ -224,6 +243,8 @@ export default function Home() {
             <a
               href="/blog"
               className="hidden md:block text-sm tracking-widest text-[var(--primary-color)] hover:underline"
+              data-aos="zoom-in"
+              data-aos-delay="150"
             >
               VIEW ALL →
             </a>
@@ -232,7 +253,11 @@ export default function Home() {
           {/* GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             {/* FEATURED BLOG */}
-            <div className="lg:col-span-2 group">
+            <div
+              className="lg:col-span-2 group"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               <div className="relative h-[300px] md:h-[420px] overflow-hidden">
                 <Image
                   src={blogs[0].image}
@@ -254,8 +279,13 @@ export default function Home() {
 
             {/* SIDE BLOGS */}
             <div className="flex flex-col gap-16">
-              {blogs.slice(1).map((blog) => (
-                <div key={blog.id} className="group flex gap-6">
+              {blogs.slice(1).map((blog, index) => (
+                <div
+                  key={blog.id}
+                  className="group flex gap-6"
+                  data-aos="fade-up"
+                  data-aos-delay={300 + index * 120}
+                >
                   <div className="relative w-32 h-24 flex-shrink-0 overflow-hidden">
                     <Image
                       src={blog.image}

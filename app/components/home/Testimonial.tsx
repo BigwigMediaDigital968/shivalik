@@ -1,14 +1,17 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import t1 from "../../assets/image4-h2.jpg"; // replace with your image
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+import t1 from "../../assets/image4-h2.jpg";
+
 const testimonials = [
   {
     id: 1,
-    text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis tempora voluptatum rerum omnis reprehenderit accusamus illum officia fugit sit fugiat perspiciatis, id, eum numquam incidunt cumque beatae quibusdam, vitae iste!
-`,
+    text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis tempora voluptatum rerum omnis reprehenderit accusamus illum officia fugit sit fugiat perspiciatis, id, eum numquam incidunt cumque beatae quibusdam, vitae iste!`,
     name: "Mark Leon",
     location: "New York, USA",
     image: t1,
@@ -30,17 +33,28 @@ been able to process my home loan smoothly.`,
     location: "New York, USA",
     image: t1,
   },
-  // add more if needed
 ];
 
 export default function TestimonialSection() {
   const [active, setActive] = useState(0);
   const current = testimonials[active];
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 120,
+    });
+  }, []);
+
   return (
     <section className="relative py-16 overflow-hidden">
       {/* HEADER */}
-      <div className="w-11/12 md:w-5/6 mx-auto mb-8 lg:mb-24 ">
+      <div
+        className="w-11/12 md:w-5/6 mx-auto mb-8 lg:mb-24"
+        data-aos="fade-up"
+      >
         <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
           Testimonials
         </p>
@@ -51,13 +65,21 @@ export default function TestimonialSection() {
       </div>
 
       {/* BACKGROUND PANEL */}
-      <div className="hidden lg:block absolute w-4/5 right-0 top-[200px] h-[520px] bg-[#f6f2ec] z-0" />
+      <div
+        className="hidden lg:block absolute w-4/5 right-0 top-[200px] h-[520px] bg-[#f6f2ec] z-0"
+        data-aos="fade-up"
+        data-aos-delay="150"
+      />
 
       {/* CONTENT */}
       <div className="relative z-10 w-11/12 md:w-5/6 mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* IMAGE */}
-          <div className="relative h-[320px] md:h-[420px] rounded-xl overflow-hidden shadow-lg">
+          <div
+            className="relative h-[320px] md:h-[420px] rounded-xl overflow-hidden shadow-lg"
+            data-aos="zoom-in"
+            data-aos-delay="250"
+          >
             <Image
               src={current.image}
               alt={current.name}
@@ -68,7 +90,11 @@ export default function TestimonialSection() {
           </div>
 
           {/* TEXT */}
-          <div className="relative max-w-xl">
+          <div
+            className="relative max-w-xl"
+            data-aos="fade-up"
+            data-aos-delay="350"
+          >
             {/* QUOTE ICON */}
             <div className="absolute -top-12 right-0 text-[80px] leading-none text-[var(--primary-color)] opacity-70">
               “”
@@ -88,7 +114,7 @@ export default function TestimonialSection() {
             </div>
 
             {/* CONTROLS */}
-            <div className="flex gap-4">
+            <div className="flex gap-4" data-aos="zoom-in" data-aos-delay="450">
               <button
                 className="w-12 h-12 border border-gray-300 flex items-center justify-center hover:bg-[var(--primary-color)] hover:text-white transition"
                 onClick={() =>

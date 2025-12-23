@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   Building2,
@@ -12,6 +12,8 @@ import {
 import img1 from "../../assets/h8_bg2.jpg";
 import img2 from "../../assets/h8_pic5.jpg";
 import img3 from "../../assets/h8_bg2.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const features = [
   {
@@ -42,10 +44,19 @@ export default function WhyChooseUs() {
   const prev = () => setActive((p) => (p === 0 ? features.length - 1 : p - 1));
   const next = () => setActive((p) => (p === features.length - 1 ? 0 : p + 1));
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 120,
+    });
+  }, []);
+
   return (
     <section className="relative py-16 overflow-hidden">
       {/* HEADER */}
-      <div className="w-11/12 md:w-5/6 mx-auto mb-8">
+      <div className="w-11/12 md:w-5/6 mx-auto mb-8" data-aos="fade-up">
         <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
           Why choose us
         </p>
@@ -57,11 +68,19 @@ export default function WhyChooseUs() {
       {/* LAYOUT */}
       <div className="relative w-full lg:w-[92%]">
         {/* RIGHT COLOR PANEL */}
-        <div className="hidden lg:block absolute right-0 top-0 w-[55%] h-[640px] bg-[#faf9f7]" />
+        <div
+          className="hidden lg:block absolute right-0 top-0 w-[55%] h-[640px] bg-[#faf9f7]"
+          data-aos="fade-up"
+          data-aos-delay="150"
+        />
 
         <div className="relative grid grid-cols-1 lg:grid-cols-2 lg:h-[640px] items-center">
-          {/* IMAGE (OVERLAPS COLOR PANEL) */}
-          <div className="relative z-10 h-[300px] md:h-[420px] lg:h-[520px]">
+          {/* IMAGE */}
+          <div
+            className="relative z-10 h-[300px] md:h-[420px] lg:h-[520px]"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          >
             <Image
               src={current.image}
               alt={current.title}
@@ -73,8 +92,16 @@ export default function WhyChooseUs() {
 
           {/* CONTENT */}
           <div className="relative z-0 flex items-center">
-            <div className="px-8 md:px-14 py-20 max-w-lg">
-              <div className="mb-6 text-[var(--primary-color)]">
+            <div
+              className="px-8 md:px-14 py-20 max-w-lg"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div
+                className="mb-6 text-[var(--primary-color)]"
+                data-aos="zoom-in"
+                data-aos-delay="400"
+              >
                 <Icon size={40} strokeWidth={1.5} />
               </div>
 
@@ -87,7 +114,11 @@ export default function WhyChooseUs() {
               </p>
 
               {/* CONTROLS */}
-              <div className="flex gap-4">
+              <div
+                className="flex gap-4"
+                data-aos="zoom-in"
+                data-aos-delay="500"
+              >
                 <button
                   onClick={prev}
                   className="w-12 h-12 border border-gray-300 flex items-center justify-center hover:bg-[var(--primary-color)] hover:text-white transition"

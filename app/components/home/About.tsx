@@ -4,8 +4,20 @@ import Image from "next/image";
 import bgImg from "../../assets/about/bg-pattern.png";
 import leftImg from "../../assets/about/about-left.jpg";
 import rightImg from "../../assets/about/about-right.jpg";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function About() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-out-cubic",
+      once: true,
+      offset: 120,
+    });
+  }, []);
+
   return (
     <section className="relative overflow-hidden">
       {/* ================= TOP BG SECTION ================= */}
@@ -14,7 +26,7 @@ export default function About() {
 
         {/* TEXT OVER BG */}
         <div className="relative z-10 w-11/12 md:w-5/6 mx-auto h-full flex items-center">
-          <div className="max-w-xl">
+          <div className="max-w-xl" data-aos="fade-up" data-aos-delay="100">
             <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
               Who we are
             </p>
@@ -27,7 +39,11 @@ export default function About() {
       </div>
 
       {/* ================= MOBILE / TABLET SIMPLE IMAGE ================= */}
-      <div className="block lg:hidden w-full">
+      <div
+        className="block lg:hidden w-full"
+        data-aos="zoom-in"
+        data-aos-delay="150"
+      >
         <Image
           src={leftImg}
           alt="Architecture"
@@ -38,7 +54,11 @@ export default function About() {
       {/* ================= BOTTOM CONTENT SECTION ================= */}
       <div className="relative bg-[#faf9f7] w-full lg:w-[90%]">
         {/* LEFT EDGE IMAGE (DESKTOP ONLY) */}
-        <div className="absolute left-0 top-0 h-full w-[42%] hidden lg:block">
+        <div
+          className="absolute left-0 top-0 h-full w-[42%] hidden lg:block"
+          data-aos="fade-right"
+          data-aos-delay="200"
+        >
           <Image
             src={leftImg}
             alt="Architecture"
@@ -54,7 +74,11 @@ export default function About() {
             <div className="hidden lg:block" />
 
             {/* MISSION & VISION */}
-            <div className="max-w-md space-y-10">
+            <div
+              className="max-w-md space-y-10"
+              data-aos="fade-up"
+              data-aos-delay="250"
+            >
               <div>
                 <h4 className="text-lg font-semibold text-[#1e2d3b] mb-3">
                   Our mission
@@ -66,7 +90,7 @@ export default function About() {
                 </p>
               </div>
 
-              <div>
+              <div data-aos="fade-up" data-aos-delay="350">
                 <h4 className="text-lg font-semibold text-[#1e2d3b] mb-3">
                   Our vision
                 </h4>
@@ -76,7 +100,11 @@ export default function About() {
                 </p>
               </div>
 
-              <button className="mt-6 px-8 py-4 bg-[#c2a178] text-white text-sm tracking-widest hover:bg-[#b09168] transition">
+              <button
+                data-aos="zoom-in"
+                data-aos-delay="450"
+                className="mt-6 px-8 py-4 bg-[#c2a178] text-white text-sm tracking-widest hover:bg-[#b09168] transition"
+              >
                 MORE ABOUT US →
               </button>
             </div>
@@ -85,7 +113,11 @@ export default function About() {
       </div>
 
       {/* ================= RIGHT FLOAT IMAGE (DESKTOP ONLY) ================= */}
-      <div className="absolute right-0 top-28 hidden xl:block">
+      <div
+        className="absolute right-0 top-28 hidden xl:block"
+        data-aos="zoom-in"
+        data-aos-delay="400"
+      >
         <Image
           src={rightImg}
           alt="Luxury Building"

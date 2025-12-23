@@ -40,7 +40,7 @@ export default function Navbar() {
           <ul className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 font-medium">
             {[
               { name: "Home", link: "/" },
-              { name: "About", link: "/about-us" },
+              { name: "About", link: "/about" },
             ].map((item) => (
               <li key={item.name}>
                 <Link
@@ -159,7 +159,7 @@ export default function Navbar() {
               Home
             </Link>
 
-            <Link href="/about-us" onClick={() => setOpen(false)}>
+            <Link href="/about" onClick={() => setOpen(false)}>
               About
             </Link>
 

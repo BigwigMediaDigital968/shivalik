@@ -86,7 +86,7 @@ export default function Navbar() {
 
             {[
               { name: "Projects", link: "/projects" },
-              { name: "Blogs", link: "/blog" },
+              { name: "Blogs", link: "/blogs" },
               { name: "Contact", link: "/contact" },
             ].map((item) => (
               <li key={item.name}>
@@ -186,7 +186,7 @@ export default function Navbar() {
               Projects
             </Link>
 
-            <Link href="/blog" onClick={() => setOpen(false)}>
+            <Link href="/blogs" onClick={() => setOpen(false)}>
               Blogs
             </Link>
 

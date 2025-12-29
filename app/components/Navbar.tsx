@@ -24,10 +24,10 @@ export default function Navbar() {
     <>
       {/* NAVBAR */}
       <header
-        className={`fixed top-0 left-0 w-full z-40 border-b border-white/30 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-40 border-b transition-all duration-300 ${
           scrolled
-            ? "bg-[var(--primary-bg)]/60 backdrop-blur-md shadow-lg"
-            : "bg-transparent"
+            ? "bg-[#f6f2ec] text-black border-black/10 shadow-lg"
+            : "bg-transparent text-white border-white/30"
         }`}
       >
         <nav className="relative w-11/12 mx-auto flex items-center justify-between text-white py-1">
@@ -37,7 +37,11 @@ export default function Navbar() {
           </Link>
 
           {/* CENTER — MENU */}
-          <ul className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 font-medium">
+          <ul
+            className={`hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-10 font-medium ${
+              scrolled ? "text-black" : "text-white"
+            }`}
+          >
             {[
               { name: "Home", link: "/" },
               { name: "About", link: "/about" },
@@ -62,7 +66,14 @@ export default function Navbar() {
               onMouseEnter={() => setProductOpen(true)}
               onMouseLeave={() => setProductOpen(false)}
             >
-              <button className="flex items-center gap-1 py-8 hover:text-[var(--primary-color)] transition">
+              <button
+                className={`flex items-center gap-1 py-8 transition ${
+                  scrolled
+                    ? "text-black hover:text-[var(--primary-color)]"
+                    : "text-white hover:text-[var(--primary-color)]"
+                }`}
+              >
+                {" "}
                 Properties <ChevronDown size={16} />
               </button>
 
@@ -95,6 +106,8 @@ export default function Navbar() {
                   className={`pb-1 transition ${
                     pathname === item.link
                       ? "border-b-2 border-[var(--primary-color)] text-[var(--primary-color)]"
+                      : scrolled
+                      ? "hover:text-[var(--primary-color)]"
                       : "hover:text-[var(--primary-color)]"
                   }`}
                 >
@@ -105,10 +118,21 @@ export default function Navbar() {
           </ul>
 
           {/* RIGHT — PHONE */}
-          <div className="hidden lg:flex items-center gap-3 text-sm font-medium group cursor-pointer hover:text-[var(--primary-color)]">
-            <span className="flex items-center justify-center w-9 h-9 rounded-full border border-white/30 transition group-hover:bg-[var(--primary-color)]">
-              <Phone size={16} color="white" />
+          <div
+            className={`hidden lg:flex items-center gap-3 text-sm font-medium group cursor-pointer ${
+              scrolled ? "text-black" : "text-white"
+            }`}
+          >
+            <span
+              className={`flex items-center justify-center w-9 h-9 rounded-full border transition ${
+                scrolled
+                  ? "border-black/20 group-hover:bg-[var(--primary-color)]"
+                  : "border-white/30 group-hover:bg-[var(--primary-color)]"
+              }`}
+            >
+              <Phone size={16} color={scrolled ? "black" : "white"} />
             </span>
+
             <span className="transition group-hover:text-[var(--primary-color)]">
               +01 123456789
             </span>
@@ -117,7 +141,9 @@ export default function Navbar() {
           {/* MOBILE TOGGLE */}
           <button
             onClick={() => setOpen(!open)}
-            className="lg:hidden text-white z-[60]"
+            className={`lg:hidden z-[60] ${
+              scrolled ? "text-black" : "text-white"
+            }`}
           >
             {open ? <X size={32} /> : <Menu size={32} />}
           </button>

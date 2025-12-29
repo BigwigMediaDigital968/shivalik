@@ -8,7 +8,7 @@ import project2 from "./assets/projects/project_2.jpg";
 import project3 from "./assets/projects/project_3.jpg";
 import project4 from "./assets/projects/project_4.jpg";
 import project5 from "./assets/projects/project_5.jpg";
-import client1 from "./assets/logo.svg";
+import client1 from "./assets/cpe-logo.png";
 import Footer from "./components/Footer";
 import QuickEnquiry from "./components/QuickEnquiry";
 import WhyChooseUs from "./components/home/WhyChooseUs";
@@ -212,7 +212,7 @@ export default function Home() {
                   <Image
                     src={client.logo}
                     alt={client.name}
-                    width={140}
+                    width={70}
                     height={70}
                     className="object-cover transition invert"
                   />

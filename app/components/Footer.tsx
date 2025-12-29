@@ -47,7 +47,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} />
-                <span className="font-body">abc@xyz.com</span>
+                <span className="font-body">Sales@crownpointestates.com</span>
               </div>
             </div>
 
@@ -134,7 +134,10 @@ export default function Footer() {
 
         {/* ================= BOTTOM BAR ================= */}
         <div className="w-11/12 md:w-5/6 mx-auto py-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
-          <p>© {new Date().getFullYear()} CPE. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Crown Points Estates. All rights
+            reserved.
+          </p>
           <p>
             Designed & Developed by{" "}
             <span className="text-white">

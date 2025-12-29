@@ -48,12 +48,12 @@
 .btn-style5 {
   border-color: #979695;
   color: #979695;
-  box-shadow: 0.3em 0.3em 0 #173e62;
+  box-shadow: 0.3em 0.3em 0 #b59a78;
 }
 
 .btn-style5:hover {
   box-shadow: -0.3em -0.3em 0 #979695;
-  background-color: #173e62;
-  border-color: #173e62;
+  background-color: #b59a78;
+  border-color: #b59a78;
   color: #ffffff;
 }

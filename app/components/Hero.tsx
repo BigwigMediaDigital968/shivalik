@@ -115,7 +115,7 @@ export default function HeroSlider() {
               index === i ? "scale-100" : "scale-110"
             }`}
           />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-white/10" />
         </div>
       ))}
 

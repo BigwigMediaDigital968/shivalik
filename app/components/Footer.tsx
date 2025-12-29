@@ -97,7 +97,7 @@ export default function Footer() {
               <h4 className="font-heading text-lg mb-4">Quick Links</h4>
               <ul className="space-y-2 font-body text-sm text-gray-300">
                 <li>
-                  <Link href="/about-us" className="hover:text-white">
+                  <Link href="/about" className="hover:text-white">
                     About
                   </Link>
                 </li>
@@ -107,7 +107,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/blog" className="hover:text-white">
+                  <Link href="/blogs" className="hover:text-white">
                     Blog
                   </Link>
                 </li>

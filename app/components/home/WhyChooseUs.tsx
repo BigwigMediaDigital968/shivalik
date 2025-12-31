@@ -8,6 +8,9 @@ import {
   ShieldCheck,
   ChevronLeft,
   ChevronRight,
+  Network,
+  Users,
+  FileCheck,
 } from "lucide-react";
 import img1 from "../../assets/h8_bg2.jpg";
 import img2 from "../../assets/h8_pic5.jpg";
@@ -17,21 +20,39 @@ import "aos/dist/aos.css";
 
 const features = [
   {
-    title: "High quality products",
-    desc: "The luxurious and exquisite design harmonious with the surrounding architecture provide optimal comfort, modernity and the best living conditions for every family.",
+    title: "15+ Years of Industry Experience",
+    desc: "Over 15 years of proven real estate expertise in Gurugram, backed by deep local market knowledge and long-term client trust.",
     icon: Building2,
     image: img1,
   },
   {
-    title: "Smart living spaces",
-    desc: "Thoughtfully planned homes with intelligent layouts, natural light and efficient use of space.",
+    title: "Complete Property Solutions",
+    desc: "Specialised advisory for fresh bookings, resale, and renting across both residential and commercial real estate markets.",
     icon: Home,
     image: img2,
   },
   {
-    title: "Safe & secure communities",
-    desc: "Advanced security systems and well-planned infrastructure ensure peace of mind for families.",
+    title: "Strong Industry Network",
+    desc: "Well-established relationships with leading developers, property owners, and corporate clients for better opportunities.",
+    icon: Network,
+    image: img3,
+  },
+  {
+    title: "Transparent & Ethical Practices",
+    desc: "Clear communication, honest advice, and professional service at every stage of the property transaction.",
     icon: ShieldCheck,
+    image: img1,
+  },
+  {
+    title: "Client-Centric Approach",
+    desc: "Tailor-made solutions designed around individual needs, investment goals, and long-term value creation.",
+    icon: Users,
+    image: img2,
+  },
+  {
+    title: "End-to-End Dedicated Support",
+    desc: "Comprehensive assistance from property search and negotiations to documentation and successful closure.",
+    icon: FileCheck,
     image: img3,
   },
 ];

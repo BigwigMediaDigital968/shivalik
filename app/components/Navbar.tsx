@@ -121,7 +121,7 @@ export default function Navbar() {
           </ul>
 
           {/* RIGHT — PHONE */}
-          <div className="flex gap-5 items-center">
+          <div className="hidden lg:flex gap-5 items-center">
             {/* GET IN TOUCH BUTTON */}
             <ButtonFill onClick={() => setOpenForm(true)} text="Get in touch" />
 
@@ -142,7 +142,7 @@ export default function Navbar() {
               </span>
 
               <span className="transition group-hover:text-[var(--primary-color)]">
-                +91 123456789
+                +91 9811556625
               </span>
             </div>
           </div>
@@ -233,7 +233,7 @@ export default function Navbar() {
             {/* PHONE */}
             <div className="mt-8 flex items-center gap-3 text-sm border-t border-white/20 pt-4">
               <Phone size={16} />
-              <span>+01 123456789</span>
+              <span>+91 9811556625</span>
             </div>
           </nav>
         </aside>

@@ -38,7 +38,7 @@ const Contact = () => {
         <div className="relative z-10 h-full flex items-center ">
           <div className="w-11/12 md:w-5/6 mx-auto">
             <h1 className="font-heading text-5xl md:text-6xl font-bold text-white mb-4">
-              Contacts
+              Contact Us
             </h1>
 
             {/* BREADCRUMB */}
@@ -68,9 +68,10 @@ const Contact = () => {
               </h2>
 
               <p className="text-gray-600 max-w-md mb-12 leading-relaxed">
-                Whether you’re looking for your next home, have a project
-                inquiry, or simply want to know more about us, we’re here to
-                help.
+                Get in touch with Crownpoint Estates for expert guidance in
+                buying, selling, renting, or investing in real estate across
+                Gurugram and Delhi NCR. Our team is ready to assist you with
+                personalised solutions.
               </p>
 
               {/* CONTACT DETAILS */}
@@ -81,8 +82,11 @@ const Contact = () => {
                     <p className="text-sm text-gray-500 uppercase tracking-widest mb-1">
                       Address
                     </p>
-                    <p className="font-medium">
-                      123 Business Avenue, City Name, Country
+                    <p className="font-medium leading-relaxed">
+                      Crownpoint Estates <br />
+                      65, Lower Ground Floor, Akashneem Marg, <br />
+                      DLF City Phase-2, Gurugram, <br />
+                      Haryana – 122002
                     </p>
                   </div>
                 </div>
@@ -93,7 +97,9 @@ const Contact = () => {
                     <p className="text-sm text-gray-500 uppercase tracking-widest mb-1">
                       Phone
                     </p>
-                    <p className="font-medium">+91 01234 56789</p>
+                    <p className="font-medium">
+                      +91 98115 56625 / 98107 86375 / 99990 19763
+                    </p>
                   </div>
                 </div>
 
@@ -103,7 +109,7 @@ const Contact = () => {
                     <p className="text-sm text-gray-500 uppercase tracking-widest mb-1">
                       Email
                     </p>
-                    <p className="font-medium">Sales@crownpointestates.com</p>
+                    <p className="font-medium">sales@crownpointestates.com</p>
                   </div>
                 </div>
               </div>
@@ -175,9 +181,9 @@ const Contact = () => {
       {/* ================= GOOGLE MAP ================= */}
       <section className="relative h-[420px]" data-aos="zoom-in">
         <iframe
-          title="Google Map"
-          src="https://www.google.com/maps?q=Delhi%20India&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3506.8425971238116!2d77.08364537528334!3d28.484286575746182!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d19fc22d63287%3A0x86013e4f6dd2d196!2sCrownpoint%20Estate!5e0!3m2!1sen!2sin!4v1767184848097!5m2!1sen!2sin"
           className="w-full h-full border-0"
+          allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         />

@@ -8,6 +8,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import Link from "next/link";
+import ButtonFill from "../ButtonFill";
 
 export default function About() {
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function About() {
             </p>
 
             <h2 className="font-heading text-3xl md:text-4xl leading-snug font-bold text-[var(--primary-bg)]">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+              Trusted Real Estate Advisors with Over 15 Years of Experience
             </h2>
           </div>
         </div>
@@ -85,9 +86,10 @@ export default function About() {
                   Our mission
                 </h4>
                 <p className="text-gray-600 text-justify">
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Eveniet iste reprehenderit vero enim repellat! Culpa ea
-                  quibusdam officia non mollitia.
+                  To deliver exceptional real estate services through
+                  personalised guidance, ethical practices, and in-depth market
+                  expertise, empowering clients to make confident, informed, and
+                  rewarding property decisions across Gurugram and Delhi NCR.
                 </p>
               </div>
 
@@ -96,18 +98,18 @@ export default function About() {
                   Our vision
                 </h4>
                 <p className="text-gray-600 text-justify">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum
-                  dicta unde sit repudiandae id distinctio sunt rem totam.
+                  To be a leading real estate consultancy recognized for
+                  professionalism, transparency, and customer satisfaction,
+                  offering innovative property solutions that create long-term
+                  value for communities and investments.
                 </p>
               </div>
               <Link href="/about">
-                <button
+                <ButtonFill
                   data-aos="zoom-in"
                   data-aos-delay="450"
-                  className="mt-6 px-8 py-4 bg-[#c2a178] text-white text-sm tracking-widest hover:bg-[#b09168] transition cursor-pointer"
-                >
-                  MORE ABOUT US →
-                </button>
+                  text="MORE ABOUT US →"
+                />
               </Link>
             </div>
           </div>

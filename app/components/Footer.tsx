@@ -43,20 +43,24 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Phone size={18} />
-                <span className="font-body">+01 123 456 789</span>
+                <span className="font-body">
+                  +91 98115 56625 / 98107 86375 / 99990 19763
+                </span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={18} />
-                <span className="font-body">Sales@crownpointestates.com</span>
+                <span className="font-body">sales@crownpointestates.com</span>
               </div>
             </div>
 
             {/* ADDRESS */}
             <div className="flex items-start gap-3">
               <MapPin size={18} className="mt-1" />
-              <p className="font-body text-sm text-gray-300">
-                123 Lorem, ipsum dolor., <br />
-                Lorem ipsum dolor sit amet.
+              <p className="font-body text-sm text-gray-300 leading-relaxed">
+                Crownpoint Estates <br />
+                65, Lower Ground Floor, Akashneem Marg, <br />
+                DLF City Phase-2, Gurugram, <br />
+                Haryana – 122002
               </p>
             </div>
 
@@ -80,20 +84,21 @@ export default function Footer() {
 
         {/* ================= LINKS ================= */}
         <div className="w-11/12 md:w-5/6 mx-auto py-16 border-b border-white/20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  gap-10">
             {/* ABOUT */}
-            <div>
+            <div className="lg:col-span-2 lg:max-w-md">
               <h4 className="font-heading text-lg mb-4">About Us</h4>
-              <p className="font-body text-sm text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Quisquam, ratione provident. Fugit rerum ab amet cumque vel,
-                hic, beatae molestiae provident, unde tenetur sapiente
-                accusamus?
+              <p className="font-body text-sm text-gray-300 leading-relaxed text-justify">
+                Crownpoint Estates is a trusted real estate consultancy based in
+                Gurugram, offering expert guidance in residential and commercial
+                properties across Delhi NCR. With over 15 years of experience,
+                we are known for transparency, integrity, and client-focused
+                service.
               </p>
             </div>
 
             {/* QUICK LINKS */}
-            <div>
+            <div className="lg:col-span-1">
               <h4 className="font-heading text-lg mb-4">Quick Links</h4>
               <ul className="space-y-2 font-body text-sm text-gray-300">
                 <li>
@@ -120,7 +125,7 @@ export default function Footer() {
             </div>
 
             {/* SERVICES */}
-            <div>
+            <div className="lg:col-span-1">
               <h4 className="font-heading text-lg mb-4">Our Services</h4>
               <ul className="space-y-2 font-body text-sm text-gray-300">
                 <li>Residential Projects</li>
@@ -135,7 +140,7 @@ export default function Footer() {
         {/* ================= BOTTOM BAR ================= */}
         <div className="w-11/12 md:w-5/6 mx-auto py-6 flex flex-col md:flex-row items-center justify-between text-sm text-gray-400">
           <p>
-            © {new Date().getFullYear()} Crown Points Estates. All rights
+            © {new Date().getFullYear()} Crownpoints Estates. All rights
             reserved.
           </p>
           <p>

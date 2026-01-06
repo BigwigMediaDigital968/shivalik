@@ -1,0 +1,270 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import QuickEnquiry from "../components/QuickEnquiry";
+
+import heroImg from "../assets/hero/aboutpage.jpg";
+
+export default function BuyProperty() {
+  return (
+    <div>
+      <Navbar />
+
+      {/* HERO SECTION */}
+      <section className="relative h-[50vh] md:h-[60vh] lg:h-[80vh] overflow-hidden">
+        <Image
+          src={heroImg}
+          alt="Buy Property"
+          fill
+          priority
+          className="object-cover"
+        />
+        <div className="relative z-10 h-full flex items-center">
+          <div className="w-11/12 md:w-5/6 mx-auto">
+            <h1 className="font-heading text-5xl md:text-6xl font-bold text-white mb-4">
+              Sell Property
+            </h1>
+            <p className="text-sm tracking-widest text-white/80 uppercase">
+              <Link href="/" className="hover:text-white">
+                Home
+              </Link>
+              <span className="mx-2">›</span>
+              <span className="text-white">Sell Property</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= SELL PROPERTY FORM ================= */}
+      <section className="py-16 bg-[#f7f7f7]">
+        <div className="w-11/12 md:w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* LEFT CONTENT */}
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Sell Your Property Faster & at the Right Price
+            </h2>
+
+            <p className="text-gray-600 mb-8 max-w-lg">
+              Get expert guidance, verified buyers, and end-to-end support to
+              sell your property without stress.
+            </p>
+
+            <ul className="space-y-3 text-gray-700">
+              <li>✔ Free property valuation</li>
+              <li>✔ Professional marketing & promotion</li>
+              <li>✔ Verified & genuine buyers</li>
+              <li>✔ Complete legal & documentation support</li>
+            </ul>
+          </div>
+
+          {/* RIGHT FORM */}
+          <div className="bg-white rounded-3xl shadow-lg p-8">
+            <h3 className="text-xl font-semibold mb-6">List Your Property</h3>
+
+            <form className="space-y-4">
+              {/* PROPERTY TYPE */}
+              <select className="w-full border rounded-xl px-4 py-3 text-sm">
+                <option value="">Property Type</option>
+                <option>Apartment</option>
+                <option>Builder Floor</option>
+                <option>Villa</option>
+                <option>Plot</option>
+                <option>Commercial</option>
+              </select>
+
+              {/* LOCATION */}
+              <input
+                type="text"
+                placeholder="Property Location"
+                className="w-full border rounded-xl px-4 py-3 text-sm"
+                required
+              />
+
+              {/* EXPECTED PRICE */}
+              <input
+                type="text"
+                placeholder="Expected Price"
+                className="w-full border rounded-xl px-4 py-3 text-sm"
+              />
+
+              {/* PHONE */}
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                className="w-full border rounded-xl px-4 py-3 text-sm"
+                required
+              />
+
+              {/* CTA */}
+              <button
+                type="submit"
+                className="w-full bg-[var(--primary-color)] text-white py-3 rounded-xl font-semibold hover:opacity-90 transition"
+              >
+                Get Free Consultation
+              </button>
+            </form>
+
+            <p className="text-xs text-gray-400 mt-4 text-center">
+              100% privacy • No spam • Trusted experts
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= WHY SELL WITH US ================= */}
+      <section className="py-20 bg-[#fafafa]">
+        <div className="w-11/12 md:w-5/6 mx-auto text-center">
+          {/* Heading */}
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Why Sell With Us
+          </h2>
+
+          <p className="text-gray-600 mb-14 max-w-2xl mx-auto">
+            We combine deep local market expertise with powerful marketing
+            strategies to help you sell faster and at the right price.
+          </p>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {[
+              {
+                title: "Verified Buyers Only",
+                desc: "We connect you only with genuine and verified buyers.",
+                icon: "👥",
+              },
+              {
+                title: "Professional Photography",
+                desc: "High-quality visuals to showcase your property perfectly.",
+                icon: "📸",
+              },
+              {
+                title: "Market-Driven Pricing",
+                desc: "Accurate pricing based on real-time market data.",
+                icon: "📊",
+              },
+              {
+                title: "End-to-End Support",
+                desc: "From listing to closure, we manage everything.",
+                icon: "🤝",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="
+            group bg-white rounded-3xl p-8
+            border border-gray-100
+            transition-all duration-300
+            hover:-translate-y-2 hover:shadow-xl
+          "
+              >
+                {/* Icon */}
+                <div className="text-4xl mb-5 transition-transform duration-300 group-hover:scale-110">
+                  {item.icon}
+                </div>
+
+                {/* Title */}
+                <h4 className="font-semibold text-lg mb-2">{item.title}</h4>
+
+                {/* Description */}
+                <p className="text-sm text-gray-600 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= HOW IT WORKS ================= */}
+      <section className="py-20 bg-[#f7f7f7]">
+        <div className="w-11/12 md:w-5/6 mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-16">How It Works</h2>
+
+          <div className="relative">
+            {/* CONNECTING LINE (DESKTOP) */}
+            <div className="hidden lg:block absolute top-8 left-0 right-0 h-[2px] bg-gray-200" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 relative">
+              {[
+                {
+                  title: "Submit Property Details",
+                  icon: "📝",
+                },
+                {
+                  title: "Free Price Evaluation",
+                  icon: "💰",
+                },
+                {
+                  title: "Marketing & Site Visits",
+                  icon: "📢",
+                },
+                {
+                  title: "Deal Closure",
+                  icon: "🤝",
+                },
+              ].map((step, index) => (
+                <div
+                  key={index}
+                  className="group flex flex-col items-center text-center relative"
+                >
+                  {/* STEP CIRCLE */}
+                  <div
+                    className="
+                w-16 h-16 rounded-full
+                flex items-center justify-center
+                bg-white border-2 border-[var(--primary-color)]
+                text-2xl
+                mb-6
+                relative z-10
+                transition-all duration-300
+                group-hover:bg-[var(--primary-color)]
+                group-hover:text-white
+              "
+                  >
+                    {step.icon}
+                  </div>
+
+                  {/* STEP NUMBER */}
+                  <div className="text-sm font-semibold text-[var(--primary-color)] mb-2">
+                    Step {index + 1}
+                  </div>
+
+                  {/* STEP TITLE */}
+                  <p className="font-medium text-gray-800 max-w-xs">
+                    {step.title}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FINAL CTA ================= */}
+      <section className="py-20 bg-[var(--primary-color)] text-white text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          Thinking of Selling Your Property?
+        </h2>
+
+        <p className="mb-8 text-white/90">
+          Let our experts handle everything for you.
+        </p>
+
+        <a
+          href="tel:+911234567890"
+          className="inline-block bg-white text-black px-8 py-4 rounded-xl font-semibold"
+        >
+          Talk to an Expert
+        </a>
+      </section>
+
+      <QuickEnquiry />
+      <Footer />
+    </div>
+  );
+}

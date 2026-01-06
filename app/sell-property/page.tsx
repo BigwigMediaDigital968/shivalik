@@ -41,11 +41,14 @@ export default function BuyProperty() {
       </section>
 
       {/* ================= SELL PROPERTY FORM ================= */}
-      <section className="py-16 bg-[#f7f7f7]">
+      <section className="py-12 ">
         <div className="w-11/12 md:w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* LEFT CONTENT */}
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <div className="space-y-4">
+            <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] font-heading">
+              List Your Property
+            </p>
+            <h2 className="font-heading text-3xl leading-snug font-bold text-[var(--primary-bg)]">
               Sell Your Property Faster & at the Right Price
             </h2>
 
@@ -117,10 +120,10 @@ export default function BuyProperty() {
       </section>
 
       {/* ================= WHY SELL WITH US ================= */}
-      <section className="py-20 bg-[#fafafa]">
+      <section className="py-12 ">
         <div className="w-11/12 md:w-5/6 mx-auto text-center">
           {/* Heading */}
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-heading text-3xl leading-snug font-bold text-[var(--primary-bg)]">
             Why Sell With Us
           </h2>
 
@@ -181,9 +184,11 @@ export default function BuyProperty() {
       </section>
 
       {/* ================= HOW IT WORKS ================= */}
-      <section className="py-20 bg-[#f7f7f7]">
+      <section className="py-12">
         <div className="w-11/12 md:w-5/6 mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-16">How It Works</h2>
+          <h2 className="font-heading text-3xl leading-snug font-bold text-[var(--primary-bg)]">
+            How It Works
+          </h2>
 
           <div className="relative">
             {/* CONNECTING LINE (DESKTOP) */}
@@ -246,8 +251,8 @@ export default function BuyProperty() {
       </section>
 
       {/* ================= FINAL CTA ================= */}
-      <section className="py-20 bg-[var(--primary-color)] text-white text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
+      <section className="py-12 bg-[var(--primary-color)] text-white text-center">
+        <h2 className="font-heading text-3xl leading-snug font-bold text-[var(--primary)] mb-5">
           Thinking of Selling Your Property?
         </h2>
 

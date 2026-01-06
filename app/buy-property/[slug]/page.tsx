@@ -105,7 +105,9 @@ export default function PropertyDetails() {
 
             {/* OVERVIEW TABLE */}
             <div>
-              <h2 className="text-2xl font-semibold mb-6">Property Overview</h2>
+              <h2 className="font-heading text-2xl leading-snug font-bold text-[var(--primary-bg)] mb-5">
+                Property Overview
+              </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
                 <OverviewItem
@@ -138,7 +140,7 @@ export default function PropertyDetails() {
 
             {/* DESCRIPTION */}
             <div>
-              <h2 className="text-2xl font-semibold mb-4">
+              <h2 className="font-heading text-2xl leading-snug font-bold text-[var(--primary-bg)] mb-5">
                 Property Description
               </h2>
               <p className="text-gray-700 leading-relaxed">
@@ -148,7 +150,7 @@ export default function PropertyDetails() {
 
             {/* HIGHLIGHTS */}
             <div>
-              <h2 className="text-2xl font-semibold mb-4">
+              <h2 className="font-heading text-2xl leading-snug font-bold text-[var(--primary-bg)] mb-5">
                 Property Highlights
               </h2>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -163,7 +165,9 @@ export default function PropertyDetails() {
 
             {/* FEATURES */}
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Features</h2>
+              <h2 className="font-heading text-2xl leading-snug font-bold text-[var(--primary-bg)] mb-5">
+                Features
+              </h2>
               <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {property.features.map((item, index) => (
                   <li key={index} className="flex gap-2">
@@ -176,7 +180,9 @@ export default function PropertyDetails() {
 
             {/* AMENITIES */}
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Amenities</h2>
+              <h2 className="font-heading text-2xl leading-snug font-bold text-[var(--primary-bg)] mb-5">
+                Amenities
+              </h2>
               <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                 {property.amenities.map((item, index) => (
                   <li
@@ -191,7 +197,9 @@ export default function PropertyDetails() {
 
             {/* NEARBY */}
             <div>
-              <h2 className="text-2xl font-semibold mb-4">Nearby Locations</h2>
+              <h2 className="font-heading text-2xl leading-snug font-bold text-[var(--primary-bg)] mb-5">
+                Nearby Locations
+              </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
                 {property.nearby.schools && (
@@ -219,7 +227,7 @@ export default function PropertyDetails() {
           {/* ================= RIGHT ================= */}
           <div className="lg:sticky lg:top-28 h-fit space-y-6">
             <div className="bg-white shadow rounded-3xl p-6">
-              <h3 className="text-xl font-semibold mb-4">
+              <h3 className="font-heading text-xl leading-snug font-bold text-[var(--primary-bg)] mb-5">
                 Interested in this property?
               </h3>
               <Link
@@ -231,7 +239,7 @@ export default function PropertyDetails() {
             </div>
 
             <div className="bg-white shadow rounded-3xl p-6">
-              <h3 className="text-xl font-semibold mb-2">
+              <h3 className="font-heading text-xl leading-snug font-bold text-[var(--primary-bg)] mb-3">
                 Enquire About This Property
               </h3>
 

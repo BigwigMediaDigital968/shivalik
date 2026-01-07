@@ -21,11 +21,35 @@ import {
   Home,
   IndianRupee,
 } from "lucide-react";
+import PopupForm from "../components/Popup";
+import ButtonFill from "../components/ButtonFill";
+
+const staticLocations = [
+  "All",
+  "DLF Phase 1",
+  "DLF Phase 2",
+  "DLF Phase 3",
+  "DLF Phase 4",
+  "DLF Phase 5",
+  "Sushant Lok 1",
+  "Sushant Lok 2",
+  "Sushant Lok 3",
+  "Sushant Lok 4",
+  "Sushant Lok 5",
+  "MG Road",
+  "Golf Course Road",
+  "Golf Course Ext. Road",
+  "Sector 77 Gurugram Haryana",
+  "Sector 76 Gurugram Haryana",
+  "Sector 102 Gurugram Haryana",
+  "Sector 59 Gurugram Haryana",
+];
 
 export default function BuyProperty() {
   const [location, setLocation] = useState("");
   const [type, setType] = useState("");
   const [budget, setBudget] = useState("");
+  const [openPopup, setOpenPopup] = useState(false);
 
   /* ------------------ FILTER LOGIC ------------------ */
   const filteredProperties = propertyData
@@ -84,14 +108,15 @@ export default function BuyProperty() {
       <section className="py-10 bg-gray-50">
         <div className="w-11/12 md:w-5/6 mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
           <select
-            className="border rounded-xl px-4 py-3"
+            className="border rounded-xl px-4 py-3 w-full"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
           >
-            <option value="">Location</option>
-            <option value="Gurgaon">Gurgaon</option>
-            <option value="Golf Course Road">Golf Course Road</option>
-            <option value="Sector 65">Sector 65</option>
+            {staticLocations.map((loc) => (
+              <option key={loc} value={loc === "All" ? "" : loc}>
+                {loc}
+              </option>
+            ))}
           </select>
 
           <select
@@ -117,16 +142,14 @@ export default function BuyProperty() {
             <option value="above-5cr">Above ₹5 Cr</option>
           </select>
 
-          <button
+          <ButtonFill
             onClick={() => {
               setLocation("");
               setType("");
               setBudget("");
             }}
-            className="bg-black text-white rounded-xl px-4 py-3 hover:bg-gray-800"
-          >
-            Reset Filters
-          </button>
+            text="Reset Filters"
+          />
         </div>
       </section>
 
@@ -186,24 +209,49 @@ export default function BuyProperty() {
                 </p>
 
                 {/* ACTION */}
-                <Link
-                  href={`/buy-property/${property.slug}`}
-                  className="inline-flex items-center justify-center gap-2 w-full bg-[var(--primary-color)] text-white py-3 rounded-xl hover:opacity-90"
-                >
-                  <Home size={18} />
-                  View Details
+                <Link href={`/buy-property/${property.slug}`}>
+                  <ButtonFill
+                    className="w-full"
+                    text={
+                      <span className="flex items-center gap-2">
+                        <Home size={18} />
+                        View Details
+                      </span>
+                    }
+                  />
                 </Link>
               </div>
             </div>
           ))}
 
           {filteredProperties.length === 0 && (
-            <p className="col-span-full text-center text-gray-500">
-              No properties found matching your criteria.
-            </p>
+            <div className="col-span-full flex justify-center">
+              <div className="bg-white border rounded-3xl shadow-md p-10 max-w-xl w-full text-center">
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+                  <Home size={28} className="text-gray-500" />
+                </div>
+
+                <h3 className="text-2xl font-semibold mb-3">
+                  No Properties Available
+                </h3>
+
+                <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                  We don’t currently have properties matching your preferences.
+                  Share your requirement with us and our team will help you find
+                  the perfect property.
+                </p>
+
+                <ButtonFill
+                  onClick={() => setOpenPopup(true)}
+                  text="Contact Our Expert"
+                />
+              </div>
+            </div>
           )}
         </div>
       </section>
+
+      <PopupForm open={openPopup} onClose={() => setOpenPopup(false)} />
 
       <QuickEnquiry />
       <Footer />

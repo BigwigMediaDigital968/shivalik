@@ -32,7 +32,9 @@ export default function Blogs() {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("http://localhost:8000/blog/viewblog");
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_BASE}/blog/viewblog`
+      );
 
       const data: BlogPost[] = Array.isArray(res.data) ? res.data : [];
 

@@ -3,12 +3,6 @@ import Image from "next/image";
 import Navbar from "./components/Navbar";
 import HeroSlider from "./components/Hero";
 import About from "./components/home/About";
-import project1 from "./assets/projects/project.jpg";
-import project2 from "./assets/projects/project_2.jpg";
-import project3 from "./assets/projects/project_3.jpg";
-import project4 from "./assets/projects/project_4.jpg";
-import project5 from "./assets/projects/project_5.jpg";
-import client1 from "./assets/cpe-logo.png";
 import Footer from "./components/Footer";
 import QuickEnquiry from "./components/QuickEnquiry";
 import WhyChooseUs from "./components/home/WhyChooseUs";
@@ -24,6 +18,13 @@ import "swiper/css";
 import { useEffect, useState } from "react";
 import PopupForm from "./components/Popup";
 import Link from "next/link";
+
+const project1 = "/assets/projects/project_1.jpg";
+const project2 = "/assets/projects/project_2.jpg";
+const project3 = "/assets/projects/project_3.jpg";
+const project4 = "/assets/projects/project_4.jpg";
+const project5 = "/assets/projects/project_5.jpg";
+const client1 = "/assets/cpe-logo.png";
 
 const projects = [
   {
@@ -204,7 +205,7 @@ export default function Home() {
         <div className="w-11/12 md:w-5/6 mx-auto">
           <div className="text-center mb-8">
             <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
-              Our Clients
+              Our Partners
             </p>
             <h2 className="font-heading text-3xl md:text-4xl leading-snug font-bold text-[var(--primary-bg)]">
               Trusted by leading brands

@@ -1,43 +1,58 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-import t1 from "../../assets/image4-h2.jpg";
-
 const testimonials = [
   {
     id: 1,
-    text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis tempora voluptatum rerum omnis reprehenderit accusamus illum officia fugit sit fugiat perspiciatis, id, eum numquam incidunt cumque beatae quibusdam, vitae iste!`,
-    name: "Mark Leon",
-    location: "New York, USA",
-    image: t1,
+    text: `Crownpoint Estates is one of the best property dealers in Gurgaon I have worked with. Their team understood my requirements clearly and helped me find the perfect home in a prime location.`,
+    name: "Vansh Verma",
+    initial: "V",
   },
   {
     id: 2,
-    text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam eos magnam provident, aut porro saepe vitae nobis! Quam quis quod magni ullam dolorem voluptate placeat!`,
-    name: "Mark Leon",
-    location: "New York, USA",
-    image: t1,
+    text: `One of the finest property dealers in Gurgaon! They showed me multiple options and ensured I got the best value for my investment.`,
+    name: "Sourabh Chakraborty",
+    initial: "S",
   },
   {
     id: 3,
-    text: `The Group was very helpful and flexible towards my needs and schedule.
-They have coordinated and cooperated with me whenever I required their assistance
-especially to get the housing loan. Without their active help, I would not have
-been able to process my home loan smoothly.`,
-    name: "Mark Leon",
-    location: "New York, USA",
-    image: t1,
+    text: `Crownpoint Estates helped me get a great deal on a builder floor. Their market knowledge makes them the best property dealers in Gurgaon today`,
+    name: "Abhay Das",
+    initial: "A",
+  },
+  {
+    id: 4,
+    text: `Amazing experience with Crown point Estates! Truly the best real estate dealer in Gurgaon for luxury properties and smooth documentation`,
+    name: "Narayan Sharma",
+    initial: "N",
+  },
+  {
+    id: 5,
+    text: `Had a very good experience with this company. The team is highly professional, the service they provide is excellent, and all dealings are completely transparent, which builds a lot of trust.`,
+    name: "Subrato Verma",
+    initial: "S",
+  },
+  {
+    id: 6,
+    text: `Very satisfied with their service. Crownpoint Estates is a very reliable property dealer in Gurgaon, offering genuine listings and accurate pricing.`,
+    name: "Kailash Rajpoot",
+    initial: "K",
   },
 ];
 
+// Function to truncate text
+const truncateText = (text: string, maxLength: number = 200) => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + "...";
+};
+
 export default function TestimonialSection() {
-  const [active, setActive] = useState(0);
-  const current = testimonials[active];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(2);
 
   useEffect(() => {
     AOS.init({
@@ -46,96 +61,117 @@ export default function TestimonialSection() {
       once: true,
       offset: 120,
     });
+
+    // Handle responsive items per view
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerView(1);
+      } else {
+        setItemsPerView(2);
+      }
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const maxIndex = Math.max(0, testimonials.length - itemsPerView);
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  const visibleTestimonials = testimonials.slice(
+    currentIndex,
+    currentIndex + itemsPerView
+  );
+
   return (
-    <section className="relative py-16 overflow-hidden">
+    <section className="relative py-16 overflow-hidden bg-white">
       {/* HEADER */}
       <div
-        className="w-11/12 md:w-5/6 mx-auto mb-8 lg:mb-24"
+        className="w-11/12 md:w-5/6 mx-auto mb-12 text-center"
         data-aos="fade-up"
       >
-        <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
-          Testimonials
-        </p>
-
-        <h2 className="font-heading text-3xl md:text-4xl leading-snug font-bold text-[var(--primary-bg)]">
-          Our biggest award is develop thriving communities
+        <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl leading-snug font-bold text-[#0d7377] mb-4">
+          What Our Clients Say
         </h2>
       </div>
 
-      {/* BACKGROUND PANEL */}
-      <div
-        className="hidden lg:block absolute w-4/5 right-0 top-[200px] h-[520px] bg-[#f6f2ec] z-0"
-        data-aos="fade-up"
-        data-aos-delay="150"
-      />
-
-      {/* CONTENT */}
-      <div className="relative z-10 w-11/12 md:w-5/6 mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* IMAGE */}
-          <div
-            className="relative h-[320px] md:h-[420px] rounded-xl overflow-hidden shadow-lg"
-            data-aos="zoom-in"
-            data-aos-delay="250"
+      {/* CAROUSEL CONTAINER */}
+      <div className="relative w-11/12 md:w-5/6 mx-auto">
+        <div className="flex items-center gap-4">
+          {/* LEFT ARROW */}
+          <button
+            onClick={goToPrevious}
+            className="flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors duration-200 z-10"
+            aria-label="Previous testimonials"
           >
-            <Image
-              src={current.image}
-              alt={current.name}
-              fill
-              className="object-cover"
-              priority
-            />
+            <ChevronLeft className="w-6 h-6 text-gray-600" />
+          </button>
+
+          {/* TESTIMONIALS GRID */}
+          <div className="flex-1 overflow-hidden">
+            <div
+              className="flex gap-6 transition-transform duration-500 ease-in-out"
+              style={{
+                transform: `translateX(0)`,
+              }}
+            >
+              {visibleTestimonials.map((testimonial) => (
+                <div
+                  key={testimonial.id}
+                  className="flex-shrink-0 w-full md:w-[calc(50%-12px)] relative bg-[#E0F2F1] rounded-lg p-6 md:p-8 shadow-sm min-h-[280px]"
+                  data-aos="fade-up"
+                >
+                  {/* QUOTATION MARK */}
+                  <div className="absolute -top-4 -left-4 text-7xl md:text-8xl text-[#B2DFDB] leading-none font-serif select-none">
+                    "
+                  </div>
+
+                  {/* TESTIMONIAL TEXT */}
+                  <div className="relative z-10 mb-6">
+                    <p className="text-gray-700 leading-relaxed text-sm md:text-base mb-3">
+                      {truncateText(testimonial.text)}
+                    </p>
+                    {/* <button className="text-blue-600 hover:text-blue-800 text-sm font-medium transition-colors">
+                      Read more
+                    </button> */}
+                  </div>
+
+                  {/* REVIEWER INFO */}
+                  <div className="flex items-center gap-3 mt-6">
+                    {/* AVATAR CIRCLE */}
+                    <div className="w-10 h-10 rounded-full bg-[#0d7377] flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-semibold text-sm">
+                        {testimonial.initial}
+                      </span>
+                    </div>
+                    {/* NAME */}
+                    <div>
+                      <h4 className="font-semibold text-gray-800 text-sm md:text-base">
+                        {testimonial.name}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* TEXT */}
-          <div
-            className="relative max-w-xl"
-            data-aos="fade-up"
-            data-aos-delay="350"
+          {/* RIGHT ARROW */}
+          <button
+            onClick={goToNext}
+            className="flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors duration-200 z-10"
+            aria-label="Next testimonials"
           >
-            {/* QUOTE ICON */}
-            <div className="absolute -top-12 right-0 text-[80px] leading-none text-[var(--primary-color)] opacity-70">
-              “”
-            </div>
-
-            <p className="text-gray-700 leading-relaxed mb-10 whitespace-pre-line">
-              {current.text}
-            </p>
-
-            {/* AUTHOR */}
-            <div className="mb-10">
-              <div className="w-16 h-[1px] bg-[var(--primary-color)] mb-4" />
-              <p className="font-heading text-lg text-[var(--primary-bg)]">
-                {current.name}
-              </p>
-              <p className="text-sm text-gray-500">{current.location}</p>
-            </div>
-
-            {/* CONTROLS */}
-            <div className="flex gap-4" data-aos="zoom-in" data-aos-delay="450">
-              <button
-                className="w-12 h-12 border border-gray-300 flex items-center justify-center hover:bg-[var(--primary-color)] hover:text-white transition"
-                onClick={() =>
-                  setActive((prev) =>
-                    prev === 0 ? testimonials.length - 1 : prev - 1
-                  )
-                }
-              >
-                <ChevronLeft />
-              </button>
-
-              <button
-                className="w-12 h-12 border border-gray-300 flex items-center justify-center hover:bg-[var(--primary-color)] hover:text-white transition"
-                onClick={() =>
-                  setActive((prev) => (prev + 1) % testimonials.length)
-                }
-              >
-                <ChevronRight />
-              </button>
-            </div>
-          </div>
+            <ChevronRight className="w-6 h-6 text-gray-600" />
+          </button>
         </div>
       </div>
     </section>

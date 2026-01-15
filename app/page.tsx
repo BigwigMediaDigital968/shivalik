@@ -203,7 +203,7 @@ export default function Home() {
       <TestimonialSection />
       <section className="py-16">
         <div className="w-11/12 md:w-5/6 mx-auto">
-          <div className="text-center mb-8">
+          <div className="mb-8" data-aos="fade-up">
             <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
               Our Partners
             </p>

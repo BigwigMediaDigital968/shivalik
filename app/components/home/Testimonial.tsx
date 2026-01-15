@@ -95,10 +95,13 @@ export default function TestimonialSection() {
     <section className="relative py-16 overflow-hidden bg-white">
       {/* HEADER */}
       <div
-        className="w-11/12 md:w-5/6 mx-auto mb-12 text-center"
+        className="w-11/12 md:w-5/6 mx-auto mb-8 lg:mb-12"
         data-aos="fade-up"
       >
-        <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl leading-snug font-bold text-[#0d7377] mb-4">
+        <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
+          Testimonials
+        </p>
+        <h2 className="font-heading text-3xl md:text-4xl leading-snug font-bold text-[var(--primary-bg)]">
           What Our Clients Say
         </h2>
       </div>
@@ -109,10 +112,10 @@ export default function TestimonialSection() {
           {/* LEFT ARROW */}
           <button
             onClick={goToPrevious}
-            className="flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors duration-200 z-10"
+            className="flex-shrink-0 w-12 h-12 border border-gray-300 flex items-center justify-center hover:bg-[var(--primary-color)] hover:text-white hover:border-[var(--primary-color)] transition-colors duration-200 z-10"
             aria-label="Previous testimonials"
           >
-            <ChevronLeft className="w-6 h-6 text-gray-600" />
+            <ChevronLeft className="w-6 h-6" />
           </button>
 
           {/* TESTIMONIALS GRID */}
@@ -126,11 +129,11 @@ export default function TestimonialSection() {
               {visibleTestimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
-                  className="flex-shrink-0 w-full md:w-[calc(50%-12px)] relative bg-[#E0F2F1] rounded-lg p-6 md:p-8 shadow-sm min-h-[280px]"
+                  className="flex-shrink-0 w-full md:w-[calc(50%-12px)] relative bg-[#faf9f7] rounded-lg p-6 md:p-8 shadow-sm min-h-[280px] border border-gray-100"
                   data-aos="fade-up"
                 >
                   {/* QUOTATION MARK */}
-                  <div className="absolute -top-4 -left-4 text-7xl md:text-8xl text-[#B2DFDB] leading-none font-serif select-none">
+                  <div className="absolute -top-4 -left-4 text-7xl md:text-8xl text-[var(--primary-color)] opacity-20 leading-none font-serif select-none">
                     "
                   </div>
 
@@ -147,14 +150,14 @@ export default function TestimonialSection() {
                   {/* REVIEWER INFO */}
                   <div className="flex items-center gap-3 mt-6">
                     {/* AVATAR CIRCLE */}
-                    <div className="w-10 h-10 rounded-full bg-[#0d7377] flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[var(--primary-bg)] flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-semibold text-sm">
                         {testimonial.initial}
                       </span>
                     </div>
                     {/* NAME */}
                     <div>
-                      <h4 className="font-semibold text-gray-800 text-sm md:text-base">
+                      <h4 className="font-semibold text-[var(--primary-bg)] text-sm md:text-base">
                         {testimonial.name}
                       </h4>
                     </div>
@@ -167,10 +170,10 @@ export default function TestimonialSection() {
           {/* RIGHT ARROW */}
           <button
             onClick={goToNext}
-            className="flex-shrink-0 w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors duration-200 z-10"
+            className="flex-shrink-0 w-12 h-12 border border-gray-300 flex items-center justify-center hover:bg-[var(--primary-color)] hover:text-white hover:border-[var(--primary-color)] transition-colors duration-200 z-10"
             aria-label="Next testimonials"
           >
-            <ChevronRight className="w-6 h-6 text-gray-600" />
+            <ChevronRight className="w-6 h-6" />
           </button>
         </div>
       </div>

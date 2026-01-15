@@ -69,8 +69,8 @@ export default function BuyProperty() {
         ? budget === "50k - 1 Lakh"
           ? property.price >= 50000 && property.price <= 100000
           : budget === "1Lakh - 2 Lakh"
-          ? property.price > 100000 && property.price <= 200000
-          : property.price > 200000
+            ? property.price > 100000 && property.price <= 200000
+            : property.price > 200000
         : true;
 
       return matchLocation && matchType && matchBudget;
@@ -83,30 +83,44 @@ export default function BuyProperty() {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="relative h-[50vh] md:h-[60vh] lg:h-[80vh] overflow-hidden">
+      <section className="relative h-[50vh] md:h-[60vh] lg:h-[90vh] overflow-hidden">
+        {/* BACKGROUND IMAGE */}
         <Image
           src={heroImg}
-          alt="Buy Property"
+          alt="About Us"
           fill
           priority
           className="object-cover"
         />
+
+        {/* DARK OVERLAY (OPTIONAL – improves contrast) */}
+        <div className="absolute inset-0 bg-black/40" />
+
+        {/* CONTENT */}
         <div className="relative z-10 h-full flex items-center">
-          <div className="w-11/12 md:w-5/6 mx-auto">
-            <h1 className="font-heading text-5xl md:text-6xl font-bold text-white mb-4">
-              Rent Property
-            </h1>
-            <p className="text-sm tracking-widest text-white/80 uppercase">
-              <Link href="/" className="hover:text-white">
-                Home
-              </Link>
-              <span className="mx-2">›</span>
-              <span className="text-white">Rent Property</span>
-            </p>
+          <div className="w-11/12 md:w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            {/* LEFT CONTENT */}
+            <div>
+              <h1 className="font-heading text-5xl md:text-6xl font-bold text-white mb-4">
+                Lease Property
+              </h1>
+
+              <p className="text-sm tracking-widest text-white/80 uppercase">
+                <Link href="/" className="hover:text-white">
+                  Home
+                </Link>
+                <span className="mx-2">›</span>
+                <span className="text-white">Lease Property</span>
+              </p>
+            </div>
+
+            {/* RIGHT SIDE – QUICK ENQUIRY */}
+            <div className="hidden lg:flex justify-end">
+              <QuickEnquiry />
+            </div>
           </div>
         </div>
       </section>
-
       {/* FILTER SECTION */}
       <section className="py-10 bg-gray-50">
         <div className="w-11/12 md:w-5/6 mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">

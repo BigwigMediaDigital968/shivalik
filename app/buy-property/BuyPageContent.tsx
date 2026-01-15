@@ -135,7 +135,8 @@ export default function BuyPageContent() {
       <Navbar />
 
       {/* HERO SECTION */}
-      <section className="relative h-[50vh] md:h-[60vh] lg:h-[80vh] overflow-hidden">
+      <section className="relative h-[50vh] md:h-[60vh] lg:h-[90vh] overflow-hidden">
+        {/* BACKGROUND IMAGE */}
         <Image
           src={heroImg}
           alt="Buy Property"
@@ -143,18 +144,32 @@ export default function BuyPageContent() {
           priority
           className="object-cover"
         />
+
+        {/* OPTIONAL OVERLAY */}
+        <div className="absolute inset-0 bg-black/40" />
+
+        {/* CONTENT */}
         <div className="relative z-10 h-full flex items-center">
-          <div className="w-11/12 md:w-5/6 mx-auto">
-            <h1 className="font-heading text-5xl md:text-6xl font-bold text-white mb-4">
-              Buy Property
-            </h1>
-            <p className="text-sm tracking-widest text-white/80 uppercase">
-              <Link href="/" className="hover:text-white">
-                Home
-              </Link>
-              <span className="mx-2">›</span>
-              <span className="text-white">Buy Property</span>
-            </p>
+          <div className="w-11/12 md:w-5/6 mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            {/* LEFT TEXT */}
+            <div>
+              <h1 className="font-heading text-5xl md:text-6xl font-bold text-white mb-4">
+                Buy Property
+              </h1>
+
+              <p className="text-sm tracking-widest text-white/80 uppercase">
+                <Link href="/" className="hover:text-white">
+                  Home
+                </Link>
+                <span className="mx-2">›</span>
+                <span className="text-white">Buy Property</span>
+              </p>
+            </div>
+
+            {/* RIGHT SIDE FORM */}
+            <div className="hidden lg:flex justify-end">
+              <QuickEnquiry />
+            </div>
           </div>
         </div>
       </section>

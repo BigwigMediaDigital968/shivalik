@@ -1,88 +1,156 @@
 "use client";
 
-import Image from "next/image";
-import { Phone } from "lucide-react";
-import enquiryImg from "../assets/h8_pic5.jpg";
-import enquirybg from "../assets/h8_bg2.jpg";
+import { useState } from "react";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+import ButtonFill from "./ButtonFill";
 
 export default function QuickEnquiry() {
+  const [step, setStep] = useState<"FORM" | "OTP">("FORM");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [otp, setOtp] = useState("");
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+
+  /* =====================
+     SEND OTP
+  ====================== */
+  const handleSendOtp = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/lead/send-otp`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+
+      setStep("OTP");
+    } catch (err: any) {
+      setError(err.message || "Failed to send OTP");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  /* =====================
+     VERIFY OTP
+  ====================== */
+  const handleVerifyOtp = async () => {
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE}/api/lead/verify-otp`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            phone: formData.phone,
+            otp,
+          }),
+        }
+      );
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+
+      setStep("FORM");
+      setOtp("");
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      alert("Thank you! Our team will contact you shortly.");
+    } catch (err: any) {
+      setError(err.message || "OTP verification failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <>
-      {/* PARALLAX SECTION */}
-      <section className="relative h-[420px] md:h-[480px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-center bg-cover md:bg-fixed"
-          style={{
-            backgroundImage: `url(${enquirybg.src})`,
-          }}
-        >
-          <div className="absolute inset-0 bg-[var(--primary-bg)]/70" />
+    <div className="w-full max-w-md ml-auto bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-6 shadow-lg">
+      <h3 className="text-xl font-semibold text-white mb-4">Quick Enquiry</h3>
+
+      {error && <p className="text-red-300 text-sm mb-3">{error}</p>}
+
+      {step === "FORM" && (
+        <form onSubmit={handleSendOtp} className="space-y-3">
+          <input
+            type="text"
+            placeholder="Your Name"
+            required
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            className="w-full px-4 py-2.5 rounded-lg bg-white/80 border border-gray-300 placeholder-gray-600 text-black focus:outline-none focus:border-[var(--primary-color)]"
+          />
+
+          <PhoneInput
+            country="in"
+            value={formData.phone}
+            onChange={(phone) => setFormData({ ...formData, phone })}
+            inputClass="!w-full !h-[44px] !pl-12 !rounded-lg !bg-white/80 !border !border-gray-300 !text-black placeholder:!text-gray-600 focus:!border-[var(--primary-color)]"
+            buttonClass="!border !border-gray-300"
+          />
+
+          <input
+            type="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+            className="w-full px-4 py-2.5 rounded-lg bg-white/80 border border-gray-300 placeholder-gray-600 text-black focus:outline-none focus:border-[var(--primary-color)]"
+          />
+
+          <textarea
+            placeholder="Your message"
+            value={formData.message}
+            onChange={(e) =>
+              setFormData({ ...formData, message: e.target.value })
+            }
+            className="w-full h-24 px-4 py-2.5 rounded-lg bg-white/80 border border-gray-300 placeholder-gray-600 text-black resize-none focus:outline-none focus:border-[var(--primary-color)]"
+          />
+
+          <ButtonFill
+            type="submit"
+            className="w-full"
+            text={loading ? "Sending OTP..." : "Request Call Back"}
+          />
+        </form>
+      )}
+
+      {step === "OTP" && (
+        <div className="space-y-4">
+          <input
+            type="text"
+            maxLength={6}
+            placeholder="Enter OTP"
+            value={otp}
+            onChange={(e) => setOtp(e.target.value)}
+            className="w-full px-4 py-3 rounded-lg bg-white/80 border border-gray-300 text-center tracking-[0.4em] text-black focus:outline-none focus:border-[var(--primary-color)]"
+          />
+
+          <ButtonFill
+            onClick={handleVerifyOtp}
+            className="w-full"
+            text={loading ? "Verifying..." : "Verify & Submit"}
+          />
         </div>
-      </section>
-
-      {/* OVERLAPPING CARD */}
-      <section className="relative z-20 -mt-56 md:-mt-64 pb-20">
-        <div className="w-11/12 md:w-3/4 mx-auto">
-          <div className="bg-white shadow-2xl grid grid-cols-1 lg:grid-cols-2 overflow-hidden">
-            {/* LEFT IMAGE */}
-            <div className="relative h-[260px] lg:h-auto">
-              <Image
-                src={enquiryImg}
-                alt="Project View"
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </div>
-
-            {/* RIGHT FORM */}
-            <div className="p-10 md:p-14">
-              <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-2 font-heading">
-                Quick Enquiry
-              </p>
-
-              <h3 className="font-heading text-3xl md:text-4xl leading-snug font-bold text-[var(--primary-bg)] mb-6">
-                Want more information?
-              </h3>
-
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="border border-gray-200 px-4 py-3 focus:outline-none"
-                />
-
-                <input
-                  type="tel"
-                  placeholder="Phone Number"
-                  className="border border-gray-200 px-4 py-3 focus:outline-none"
-                />
-
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="border border-gray-200 px-4 py-3 focus:outline-none md:col-span-2"
-                />
-
-                <select className="border border-gray-200 px-4 py-3 focus:outline-none md:col-span-2">
-                  <option>Select Project</option>
-                  <option>Project 1</option>
-                  <option>Project 2</option>
-                  <option>Project 3</option>
-                </select>
-
-                <button
-                  type="submit"
-                  className="md:col-span-2 mt-4 flex items-center justify-center gap-3 bg-[var(--primary-color)] text-white py-4 tracking-widest hover:opacity-90 transition"
-                >
-                  <Phone size={16} />
-                  GET A CALL BACK
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+      )}
+    </div>
   );
 }

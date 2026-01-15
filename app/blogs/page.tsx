@@ -1,14 +1,17 @@
 "use client";
-
-import Image from "next/image";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import QuickEnquiry from "../components/QuickEnquiry";
-import axios from "axios";
-import heroImg from "../assets/hero/aboutpage.jpg";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import axios from "axios";
 import Fuse from "fuse.js";
+
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { FaPhoneAlt, FaWhatsapp } from "react-icons/fa";
+import Link from "next/link";
+import Navbar from "../components/Navbar";
+import PopupForm from "../components/Popup";
+import Footer from "../components/Footer";
+import heroImg from "../assets/hero/aboutpage.jpg";
+import QuickEnquiry from "../components/QuickEnquiry";
 
 interface BlogPost {
   _id: string;
@@ -19,27 +22,25 @@ interface BlogPost {
   datePublished: string;
 }
 
-export default function Blogs() {
+const Blogs = () => {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
   const [filteredBlogs, setFilteredBlogs] = useState<BlogPost[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const blogsPerPage = 9;
+  const router = useRouter();
 
-  // ✅ FETCH BLOGS
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(
+      const res = await axios.get<BlogPost[]>(
         `${process.env.NEXT_PUBLIC_API_BASE}/blog/viewblog`
       );
-
-      const data: BlogPost[] = Array.isArray(res.data) ? res.data : [];
-
-      setBlogs(data);
-      setFilteredBlogs(data);
+      setBlogs(res.data);
+      setFilteredBlogs(res.data);
       setCurrentPage(1);
     } catch (err) {
       console.error("Failed to fetch blogs", err);
@@ -54,42 +55,32 @@ export default function Blogs() {
     fetchBlogs();
   }, []);
 
-  // ✅ SEARCH (Fuse.js)
   useEffect(() => {
     if (!searchTerm.trim()) {
       setFilteredBlogs(blogs);
-      return;
+    } else {
+      const fuse = new Fuse(blogs, {
+        keys: ["title", "author"],
+        threshold: 0.4,
+      });
+      const results = fuse.search(searchTerm).map((res) => res.item);
+      setFilteredBlogs(results);
+      setCurrentPage(1);
     }
-
-    const fuse = new Fuse(blogs, {
-      keys: ["title", "author"],
-      threshold: 0.4,
-    });
-
-    const results = fuse.search(searchTerm).map((r) => r.item);
-    setFilteredBlogs(results);
-    setCurrentPage(1);
   }, [searchTerm, blogs]);
 
-  // ✅ PAGINATION (SAFE)
   const indexOfLast = currentPage * blogsPerPage;
   const indexOfFirst = indexOfLast - blogsPerPage;
-
-  const currentBlogs = Array.isArray(filteredBlogs)
-    ? filteredBlogs.slice(indexOfFirst, indexOfLast)
-    : [];
-
+  const currentBlogs = filteredBlogs.slice(indexOfFirst, indexOfLast);
   const totalPages = Math.ceil(filteredBlogs.length / blogsPerPage);
 
   return (
-    <div>
+    <div className="min-h-screen bg-white text-black">
       <Navbar />
-
-      {/* HERO */}
       <section className="relative h-[50vh] md:h-[60vh] lg:h-[80vh] overflow-hidden">
         <Image
           src={heroImg}
-          alt="Blogs"
+          alt="Buy Property"
           fill
           priority
           className="object-cover"
@@ -100,102 +91,128 @@ export default function Blogs() {
               Blogs
             </h1>
             <p className="text-sm tracking-widest text-white/80 uppercase">
-              <Link href="/">Home</Link>
+              <Link href="/" className="hover:text-white">
+                Home
+              </Link>
               <span className="mx-2">›</span>
-              <span>Blogs</span>
+              <span className="text-white">All Blogs</span>
             </p>
           </div>
         </div>
       </section>
 
-      {/* BLOG GRID */}
-      <section className="py-16 bg-white">
-        <div className="w-11/12 md:w-5/6 mx-auto">
-          {/* SECTION HEADER */}
-          <div className="mb-16 max-w-2xl">
-            <p className="uppercase tracking-widest text-sm text-[var(--primary-color)] mb-4 font-heading">
-              Our Blog
-            </p>
-
-            <h2 className="font-heading text-3xl md:text-4xl leading-snug font-bold text-[var(--primary-bg)]">
-              Latest insights & updates
-            </h2>
-          </div>
-
-          {/* BLOG GRID */}
-          {loading ? (
-            <p className="text-center">Loading blogs...</p>
-          ) : currentBlogs.length === 0 ? (
-            <p className="text-center text-gray-500">No blogs found.</p>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-              {currentBlogs.map((blog) => (
-                <Link
-                  href={`/blogs/${blog.slug}`}
-                  key={blog._id}
-                  className="group block"
-                >
-                  <article>
-                    {/* IMAGE */}
-                    <div className="relative h-[260px] overflow-hidden">
-                      <Image
-                        src={blog.coverImage}
-                        alt={blog.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </div>
-
-                    {/* CONTENT */}
-                    <div className="mt-6">
-                      <p className="text-xs tracking-widest text-[var(--primary-color)] mb-2 uppercase">
-                        Blog •{" "}
-                        {new Date(blog.datePublished).toLocaleDateString(
-                          "en-IN",
-                          {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                          }
-                        )}
-                      </p>
-
-                      <h3 className="font-heading text-xl text-[var(--primary-bg)] leading-snug group-hover:underline">
-                        {blog.title}
-                      </h3>
-
-                      <p className="text-sm text-gray-500 mt-2">
-                        By {blog.author}
-                      </p>
-                    </div>
-                  </article>
-                </Link>
-              ))}
-            </div>
-          )}
-          {/* PAGINATION */}
-          {totalPages > 1 && (
-            <div className="flex justify-center mt-10 gap-2">
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`px-4 py-2 rounded ${
-                    currentPage === i + 1
-                      ? "bg-black text-white"
-                      : "bg-gray-200"
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
-            </div>
-          )}
+      <div className="w-11/12 md:w-5/6 mx-auto flex flex-col gap-8 py-[40px]">
+        {/* Search Bar */}
+        <div className="sticky top-[80px] z-10 bg-white py-2">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="🔍 Search blogs by title or author"
+            className="w-full p-3 border border-gray-300 rounded-lg bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+          />
         </div>
-      </section>
 
+        {loading ? (
+          /* 🔄 LOADER */
+          <div className="flex flex-col justify-center items-center min-h-[50vh]">
+            <div className="w-12 h-12 border-4 border-[var(--primary-color)] border-t-transparent rounded-full animate-spin mb-4" />
+            <p className="text-gray-600 text-lg">Loading blogs...</p>
+          </div>
+        ) : currentBlogs.length === 0 ? (
+          /* ❌ NO DATA STATE */
+          <div className="flex justify-center items-center min-h-[50vh]">
+            <div className="bg-white border border-gray-200 rounded-3xl shadow-lg p-10 max-w-xl w-full text-center">
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center">
+                📄
+              </div>
+
+              <h3 className="text-2xl font-semibold mb-3 text-gray-900">
+                No Blogs Available
+              </h3>
+
+              <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                We don’t have any blogs matching your search right now. If
+                you’re looking for expert real estate advice, our team is happy
+                to help.
+              </p>
+
+              <button
+                onClick={() => setIsPopupOpen(true)}
+                className="bg-[var(--primary-color)] text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition"
+              >
+                Talk to Our Expert
+              </button>
+            </div>
+          </div>
+        ) : (
+          /* ✅ BLOG GRID */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {currentBlogs.map((blog) => (
+              <Link
+                key={blog._id}
+                href={`/blogs/${blog.slug}`}
+                className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer group border border-gray-200"
+              >
+                {/* Image */}
+                <div className="relative w-full h-56 overflow-hidden">
+                  <Image
+                    src={blog.coverImage}
+                    alt={blog.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="p-5 flex flex-col justify-between h-[180px]">
+                  <div>
+                    <h2 className="text-xl font-semibold mb-2 line-clamp-2 group-hover:text-[var(--primary-color)] transition-colors">
+                      {blog.title}
+                    </h2>
+                    <p className="text-gray-600 text-sm mb-1">
+                      {new Date(blog.datePublished).toLocaleDateString()}
+                    </p>
+                    <p className="text-gray-800 text-sm">
+                      By <span className="font-medium">{blog.author}</span>
+                    </p>
+                  </div>
+
+                  <span className="mt-4 self-start text-[var(--primary-color)] font-semibold group-hover:underline transition">
+                    Read More →
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <div className="flex justify-center mt-8 space-x-2 flex-wrap gap-2">
+            {[...Array(totalPages)].map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentPage(idx + 1)}
+                className={`px-4 py-2 rounded-lg border font-medium transition-colors duration-200 ${
+                  currentPage === idx + 1
+                    ? "bg-[var(--primary-color)] text-white border-[var(--primary-color)]"
+                    : "bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200"
+                }`}
+              >
+                {idx + 1}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
       <QuickEnquiry />
+
+      <PopupForm open={isPopupOpen} onClose={() => setIsPopupOpen(false)} />
+
       <Footer />
     </div>
   );
-}
+};
+
+export default Blogs;

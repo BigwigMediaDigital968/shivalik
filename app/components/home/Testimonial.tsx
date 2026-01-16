@@ -129,7 +129,7 @@ export default function TestimonialSection() {
               {visibleTestimonials.map((testimonial) => (
                 <div
                   key={testimonial.id}
-                  className="flex-shrink-0 w-full md:w-[calc(50%-12px)] relative bg-[#faf9f7] rounded-lg p-6 md:p-8 shadow-sm min-h-[280px] border border-gray-100"
+                  className="flex-shrink-0 w-full md:w-[calc(50%-12px)] relative bg-[#faf9f7] rounded-lg p-6 md:p-8 shadow-sm min-h-[280px] border border-gray-100 flex flex-col justify-center"
                   data-aos="fade-up"
                 >
                   {/* QUOTATION MARK */}
@@ -148,7 +148,7 @@ export default function TestimonialSection() {
                   </div>
 
                   {/* REVIEWER INFO */}
-                  <div className="flex items-center gap-3 mt-6">
+                  <div className="flex items-center gap-3">
                     {/* AVATAR CIRCLE */}
                     <div className="w-10 h-10 rounded-full bg-[var(--primary-bg)] flex items-center justify-center flex-shrink-0">
                       <span className="text-white font-semibold text-sm">

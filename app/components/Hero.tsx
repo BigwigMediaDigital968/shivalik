@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Facebook, Twitter, Instagram } from "lucide-react";
 import Link from "next/link";
+import PopupForm from "./Popup";
 
 const heroContent = {
   tag: "",
@@ -30,6 +31,7 @@ const socialLinks = [
 
 export default function HeroSlider() {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [openForm, setOpenForm] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -128,14 +130,17 @@ export default function HeroSlider() {
               {heroContent.desc}
             </p>
 
-            <Link href="/contact" className="inline-block">
-              <button className="px-10 py-4 bg-[#b59a78] text-white font-semibold tracking-widest hover:bg-[#a08968] transition lux-slide delay-3 uppercase text-sm">
-                GET IN TOUCH →
-              </button>
-            </Link>
+            <button 
+              onClick={() => setOpenForm(true)}
+              className="px-10 py-4 bg-[#b59a78] text-white font-semibold tracking-widest hover:bg-[#a08968] transition lux-slide delay-3 uppercase text-sm cursor-pointer">
+              GET IN TOUCH →
+            </button>
           </div>
         </div>
       </div>
+
+      {/* POPUP FORM */}
+      <PopupForm open={openForm} onClose={() => setOpenForm(false)} />
     </section>
   );
 }

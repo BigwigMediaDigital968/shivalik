@@ -18,13 +18,31 @@ import "swiper/css";
 import { useEffect, useState } from "react";
 import PopupForm from "./components/Popup";
 import Link from "next/link";
+import img1 from "./assets/client1.png"
+import img2 from "./assets/client2.png"
+import img3 from "./assets/client3.png"
+import img4 from "./assets/client4.png"
+import img5 from "./assets/client5.png"
+import img6 from "./assets/client6.png"
+import img7 from "./assets/client7.png"
+import img8 from "./assets/client8.png"
+import img9 from "./assets/client9.png"
+import img10 from "./assets/client10.png"
+import img11 from "./assets/client11.png"
+import img12 from "./assets/client12.png"
+import img13 from "./assets/client13.png"
+import img14 from "./assets/client14.png"
+import img15 from "./assets/client15.png"
+import img16 from "./assets/client16.png"
+
+
 
 const project1 = "/assets/projects/project_1.jpg";
 const project2 = "/assets/projects/project_2.jpg";
 const project3 = "/assets/projects/project_3.jpg";
 const project4 = "/assets/projects/project_4.jpg";
 const project5 = "/assets/projects/project_5.jpg";
-const client1 = "/assets/cpe-logo.png";
+
 
 const projects = [
   {
@@ -65,12 +83,23 @@ const projects = [
 ];
 
 const clients = [
-  { id: 1, logo: client1, name: "Client 1" },
-  { id: 2, logo: client1, name: "Client 2" },
-  { id: 3, logo: client1, name: "Client 3" },
-  { id: 4, logo: client1, name: "Client 4" },
-  { id: 5, logo: client1, name: "Client 5" },
-  { id: 6, logo: client1, name: "Client 6" },
+  { id: 1, logo: img1, name: "Client 1" },
+  { id: 2, logo: img2, name: "Client 2" },
+  { id: 3, logo: img3, name: "Client 3" },
+  { id: 4, logo: img4, name: "Client 4" },
+  { id: 5, logo: img5, name: "Client 5" },
+  { id: 6, logo: img6, name: "Client 6" },
+  { id: 7, logo: img7, name: "Client 7" },
+  { id: 8, logo: img8, name: "Client 8" },
+  { id: 9, logo: img9, name: "Client 9" },
+  { id: 10, logo: img10, name: "Client 10" },
+  { id: 11, logo: img11, name: "Client 11" },
+  { id: 12, logo: img12, name: "Client 12" },
+  { id: 13, logo: img13, name: "Client 13" },
+  { id: 14, logo: img14, name: "Client 14" },
+  { id: 15, logo: img15, name: "Client 15" },
+  { id: 16, logo: img16, name: "Client 16" },
+  
 ];
 
 const blogs = [
@@ -235,7 +264,7 @@ export default function Home() {
                     alt={client.name}
                     width={70}
                     height={70}
-                    className="object-cover transition invert"
+                    className="object-cover transition"
                   />
                 </div>
               </SwiperSlide>

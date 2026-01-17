@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import bgImg from "../../assets/about/bg-pattern.png";
-import leftImg from "../../assets/about/about-left.jpg";
-import rightImg from "../../assets/about/about-right.jpg";
+import leftImg from "../../assets/about/about-left.png";
+import rightImg from "../../assets/about/about-right.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";

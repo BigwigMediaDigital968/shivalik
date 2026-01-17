@@ -12,9 +12,12 @@ import {
   Users,
   FileCheck,
 } from "lucide-react";
-import img1 from "../../assets/h8_bg2.jpg";
+import img7 from "../../assets/15years.png";
 import img2 from "../../assets/h8_pic5.jpg";
 import img3 from "../../assets/h8_bg2.jpg";
+import img4 from "../../assets/Centric-Approach.png";
+import img5 from "../../assets/End-to-End.png";
+import img6 from "../../assets/cl1.png";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -23,7 +26,7 @@ const features = [
     title: "15+ Years of Industry Experience",
     desc: "Over 15 years of proven real estate expertise in Gurugram, backed by deep local market knowledge and long-term client trust.",
     icon: Building2,
-    image: img1,
+    image: img7,
   },
   {
     title: "Complete Property Solutions",
@@ -41,19 +44,19 @@ const features = [
     title: "Transparent & Ethical Practices",
     desc: "Clear communication, honest advice, and professional service at every stage of the property transaction.",
     icon: ShieldCheck,
-    image: img1,
+    image: img4,
   },
   {
     title: "Client-Centric Approach",
     desc: "Tailor-made solutions designed around individual needs, investment goals, and long-term value creation.",
     icon: Users,
-    image: img2,
+    image: img6,
   },
   {
     title: "End-to-End Dedicated Support",
     desc: "Comprehensive assistance from property search and negotiations to documentation and successful closure.",
     icon: FileCheck,
-    image: img3,
+    image: img5,
   },
 ];
 
